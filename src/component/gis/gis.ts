@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -9,9 +9,15 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrl: './gis.css'
 })
 export class GISComponent {
-  assetFolder : string = '/assets/';
+  pdfFolder : string = '/public/pdfs/';
   scandinaviaURL : SafeResourceUrl;  
+  showScandinaviaPDF : boolean;
   constructor(private sanitizer: DomSanitizer){
-    this.scandinaviaURL =  this.sanitizer.bypassSecurityTrustResourceUrl(this.assetFolder + "ScandinaviaRailwayCrossings.pdf"); 
+    this.scandinaviaURL =  this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfFolder + "ScandinaviaRailwayCrossings.pdf"); 
+    this.showScandinaviaPDF = false;
   }
+
+  scandinaviaToggle() {
+    this.showScandinaviaPDF = !this.showScandinaviaPDF;
+  } 
 }
